@@ -42,7 +42,7 @@ public class EulerProblem004Alternate {
 			// return error maybe later
 		}
 
-		// setup data based on original inputs
+		// setup data based on inputs
 		setupPalindromeCheck(firstValueLength, secondValueLength);
 
 		// test potential values as palindromes and then confirm

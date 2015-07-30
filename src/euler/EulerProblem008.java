@@ -10,36 +10,18 @@ public class EulerProblem008 {
 		try {
 			fileScanner = new Scanner(inputFile);
 		} catch (FileNotFoundException e) {
-			System.out.println("error with file");
+			System.out.println("error with file "+ inputFile.toString());
 		}
 		int testValue = 1;
-		int[] testGroup = new int[5];
+		int[] testGroup = new int[13];
 		int outputValue = 0;
 		int fiveValuesToTest = 0;
 		
 		while (fileScanner.hasNextInt()){
-			//potential regex (\b\d){1}((\B\d){1}){1,}
 			
 			testGroup[fiveValuesToTest] = fileScanner.nextInt();
-	
-			if (fiveValuesToTest < 4){
-				fiveValuesToTest++;
-			} else {
-				fiveValuesToTest = 0;
-			}
 
-			
-			for(int i = 0; i<=4; i++){
-				testValue *= testGroup[i];
-			}
-			
-			if (testValue > outputValue){
-				outputValue = testValue;
-			}
-			testValue = 1;
-			
 		}
-		
 		return outputValue;
 	}
 }

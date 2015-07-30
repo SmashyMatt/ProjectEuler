@@ -6,14 +6,10 @@ public class EulerMain {
 	static long timerStart = 0;
 	static long timerEnd = 0;
 	static long timeSpent = 0;
-	static SieveOfEratosthenes sieve;
+	static SieveOfEratosthenes sieve = SieveOfEratosthenes.getSieve();
 
 	public static void main(String[] args) {
 		timerStart = System.currentTimeMillis();
-		System.out.println(timeTaken());
-		System.out.println("Problem 10 - " + EulerProblem010.answer() + " took " + timeTaken() + " milliseconds");
-		sieve = SieveOfEratosthenes.getSieve();
-		System.out.println("Sieve" + /*sieve.toString() +*/ "\ntook " + timeTaken() + " milliseconds");
 		System.out.println("Problem 1 Answer is : " + EulerProblem001.answer() + " which took "	+ timeTaken() + " milliseconds");
 		System.out.println("Problem 2 Answer is : " + EulerProblem002.answer() + " which took "	+ timeTaken() + " milliseconds");
 		System.out.println("Problem 3 Answer is : " + EulerProblem003.answer() + " which took " + timeTaken() + " milliseconds");

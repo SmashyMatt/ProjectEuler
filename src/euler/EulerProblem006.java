@@ -2,21 +2,29 @@ package euler;
 
 public class EulerProblem006 {
 
-	
-	public static int answer(){
+	public static int answer() {
+		/*
+		 * problem details - https://projecteuler.net/problem=6
+		 * 
+		 * This problem seems relatively straightforward to me, perhaps the
+		 * issue is closely reading the problem to ensure there's no mix-up in
+		 * two similar values.
+		 */
+
+		int targetNumber = 100;
 		int sumOfSquares = 0;
 		int squareOfSum = 0;
-		int output = 0;
-		
-		for (int i=1; i<=100; i++){
-			squareOfSum += i;
-			sumOfSquares += (i*i);
+		int finalAnswer = 0;
+
+		for (int naturalNumber = 1; naturalNumber <= targetNumber; naturalNumber++) {
+			squareOfSum += naturalNumber; //to be squared later
+			sumOfSquares += (naturalNumber * naturalNumber);
 		}
-		
+
 		squareOfSum *= squareOfSum;
-		output = squareOfSum - sumOfSquares;
-		
-		return output;
-		
+		finalAnswer = squareOfSum - sumOfSquares;
+
+		return finalAnswer;
+
 	}
 }

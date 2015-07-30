@@ -8,6 +8,7 @@ public class FactoringTree {
 	private BigInteger nodeValue;
 	private FactoringTree leftChild = null;
 	private FactoringTree rightChild = null;
+	private static SieveOfEratosthenes sieve = SieveOfEratosthenes.getSieve();
 
 	/**
 	 * Accepts a BigInteger value to create a factor tree. The tree structure
@@ -72,8 +73,8 @@ public class FactoringTree {
 			if (rightChild == null) {
 				return new FactoringTree(factorTarget.multiply(nodeValue));
 			}
-			
-			if (factorTarget.compareTo(leftChild.getNodeValue()) == -1){
+
+			if (factorTarget.compareTo(leftChild.getNodeValue()) == -1) {
 				return new FactoringTree(factorTarget.multiply(nodeValue));
 			}
 
@@ -90,8 +91,32 @@ public class FactoringTree {
 	}
 
 	private BigInteger findFactor(BigInteger factorTarget) {
-		for (BigInteger factor = BigInteger.valueOf(2); factor.compareTo(factorTarget) == -1; factor = factor
-				.add(BigInteger.ONE)) {
+		Integer intFactorTarget = null;
+		BigInteger factor = BigInteger.valueOf(2);
+		
+		try{
+			intFactorTarget = factorTarget.intValueExact();
+			
+		}catch (ArithmeticException exception){
+			intFactorTarget = null;
+		}
+		
+		if(intFactorTarget != null){ //if we can work in int values, we can catch lower primes faster
+			for(int intFactor = sieve.getNextPrimeAfter(1); intFactor <= sieve.getLargestPrime();intFactor = sieve.getNextPrimeAfter(intFactor) ){
+				if (intFactorTarget % intFactor == 0){
+					return BigInteger.valueOf(intFactor);
+				}
+				
+				if(intFactor > Math.round(Math.sqrt(intFactorTarget.doubleValue()))){
+					return factorTarget;
+				}
+				
+			}
+			//if we have to go over the max the Sieve has, we start out where it left off
+			factor = BigInteger.valueOf(sieve.getLargestPrime());
+		}
+		
+		for (/*no init*/; factor.compareTo(factorTarget) == -1; factor = factor.add(BigInteger.ONE)) {
 			if (factorTarget.mod(factor).compareTo(BigInteger.ZERO) == 0) {
 				return factor;
 			}
@@ -100,7 +125,7 @@ public class FactoringTree {
 	}
 
 	/**
-	 * Returns a List of Integer objects for all the factors in the tree
+	 * Returns a List of BigInteger objects for all the factors in the tree
 	 * structure.
 	 * 
 	 * @return
@@ -125,7 +150,7 @@ public class FactoringTree {
 	}
 
 	/**
-	 * Returns a long of the largest factor within the tree structure.
+	 * Returns a BigInteger of the largest factor within the tree structure.
 	 * 
 	 * @return
 	 */
