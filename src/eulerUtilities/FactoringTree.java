@@ -4,10 +4,10 @@ import java.math.BigInteger;
 import java.util.LinkedList;
 import java.util.List;
 
-public class EulerFactoringTree {
+public class FactoringTree {
 	private BigInteger nodeValue;
-	private EulerFactoringTree leftChild = null;
-	private EulerFactoringTree rightChild = null;
+	private FactoringTree leftChild = null;
+	private FactoringTree rightChild = null;
 
 	/**
 	 * Accepts a BigInteger value to create a factor tree. The tree structure
@@ -18,13 +18,13 @@ public class EulerFactoringTree {
 	 * 
 	 * @param factorTarget
 	 */
-	public EulerFactoringTree(BigInteger factorTarget) {
+	public FactoringTree(BigInteger factorTarget) {
 		nodeValue = factorTarget;
 		BigInteger factor = findFactor(factorTarget);
 
 		if (factor.compareTo(nodeValue) == -1) {
-			leftChild = new EulerFactoringTree(factor);
-			rightChild = new EulerFactoringTree(factorTarget.divide(factor));
+			leftChild = new FactoringTree(factor);
+			rightChild = new FactoringTree(factorTarget.divide(factor));
 		}
 
 		return;
@@ -47,10 +47,10 @@ public class EulerFactoringTree {
 	 * @param factorTargetList
 	 * @return
 	 */
-	public EulerFactoringTree(List<BigInteger> factorTargetList) {
+	public FactoringTree(List<BigInteger> factorTargetList) {
 		nodeValue = BigInteger.ONE;
-		leftChild = new EulerFactoringTree(BigInteger.ONE);
-		rightChild = new EulerFactoringTree(BigInteger.ONE);
+		leftChild = new FactoringTree(BigInteger.ONE);
+		rightChild = new FactoringTree(BigInteger.ONE);
 
 		for (BigInteger factorTarget : factorTargetList) {
 			rightChild = rightChild.reOrganizeNodes(factorTarget);
@@ -60,7 +60,7 @@ public class EulerFactoringTree {
 		}
 	}
 
-	private EulerFactoringTree reOrganizeNodes(BigInteger factorTarget) {
+	private FactoringTree reOrganizeNodes(BigInteger factorTarget) {
 
 		if (factorTarget.compareTo(BigInteger.ONE) != 0
 				|| (rightChild != null && factorTarget.compareTo(rightChild.getNodeValue()) == 0)) {
@@ -70,11 +70,11 @@ public class EulerFactoringTree {
 			}
 
 			if (rightChild == null) {
-				return new EulerFactoringTree(factorTarget.multiply(nodeValue));
+				return new FactoringTree(factorTarget.multiply(nodeValue));
 			}
 			
 			if (factorTarget.compareTo(leftChild.getNodeValue()) == -1){
-				return new EulerFactoringTree(factorTarget.multiply(nodeValue));
+				return new FactoringTree(factorTarget.multiply(nodeValue));
 			}
 
 			if (rightChild != null) {

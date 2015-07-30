@@ -4,7 +4,7 @@ import java.math.BigInteger;
 import java.util.LinkedList;
 import java.util.List;
 
-import eulerUtilities.EulerFactoringTree;
+import eulerUtilities.FactoringTree;
 
 public class EulerProblem005 {
 
@@ -13,10 +13,11 @@ public class EulerProblem005 {
 
 		List<BigInteger> factorList = new LinkedList<BigInteger>();
 
-		for (long i = 2000; i >= 1; i--) {
+		for (int i = 1; i <= 20; i++) {
 			factorList.add(BigInteger.valueOf(i));
 		}
-		EulerFactoringTree factoringTree = new EulerFactoringTree(factorList);
+		
+		FactoringTree factoringTree = new FactoringTree(factorList);
 		System.out.println(factoringTree.toString());
 		return factoringTree.getLowestCommonMultiple().toString();
 	}

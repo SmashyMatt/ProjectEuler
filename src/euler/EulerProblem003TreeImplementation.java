@@ -2,7 +2,7 @@ package euler;
 
 import java.math.BigInteger;
 
-import eulerUtilities.EulerFactoringTree;
+import eulerUtilities.FactoringTree;
 
 public class EulerProblem003TreeImplementation {
 	/* Problem details - https://projecteuler.net/problem=3
@@ -10,12 +10,12 @@ public class EulerProblem003TreeImplementation {
 	 * tree structure that handles the factoring and also keeps an entire
 	 * history of the factors
 	 */
-	private static EulerFactoringTree factoringRootNode;
+	private static FactoringTree factoringRootNode;
 	private static BigInteger factoringTargetValue = BigInteger.valueOf(600851475143L);
 
 	public static long answer() {
 
-		factoringRootNode = new EulerFactoringTree(factoringTargetValue);
+		factoringRootNode = new FactoringTree(factoringTargetValue);
 
 		return factoringRootNode.getLargestFactor().longValue();
 	}
