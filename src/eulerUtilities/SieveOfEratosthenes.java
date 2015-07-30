@@ -5,24 +5,19 @@ import java.util.BitSet;
 public class SieveOfEratosthenes {
 	private static SieveOfEratosthenes sieve;
 	private static int maxPrimeValue = 999999;
-	private static BitSet setOfDiscoveredPrimes = new BitSet(maxPrimeValue);
+	private static BitSet primeSet = new BitSet(maxPrimeValue + 1);
 
 	private SieveOfEratosthenes() {
-		for (int i = 2; i <= maxPrimeValue; i++) {
-			setOfDiscoveredPrimes.set(i);
-		}
+		primeSet.set(2,maxPrimeValue+1);
 
-		for (int currentPrime = setOfDiscoveredPrimes
-				.nextSetBit(0); currentPrime != -1; currentPrime = setOfDiscoveredPrimes.nextSetBit(currentPrime + 1)) {
+		for (int currentPrime = primeSet.nextSetBit(0); currentPrime != -1; currentPrime = primeSet.nextSetBit(currentPrime + 1)) {
 
-			BitSet nonPrimeNumbers = new BitSet(maxPrimeValue);
+			BitSet nonPrimeNumbers = new BitSet(maxPrimeValue+1);
 
-			int currentMultiple = 0;
-			for (int j = 2; currentMultiple <= maxPrimeValue; j++) {
-				currentMultiple = (j * currentPrime);
-				nonPrimeNumbers.set(currentMultiple);
+			for (int j = 2; (j * currentPrime) <= maxPrimeValue; j++) {
+				nonPrimeNumbers.set(j * currentPrime);
 			}
-			setOfDiscoveredPrimes.andNot(nonPrimeNumbers);
+			primeSet.andNot(nonPrimeNumbers);
 		}
 
 	}
@@ -36,7 +31,7 @@ public class SieveOfEratosthenes {
 	}
 
 	public String toString() {
-		return setOfDiscoveredPrimes.toString();
+		return primeSet.toString();
 	}
 
 }
