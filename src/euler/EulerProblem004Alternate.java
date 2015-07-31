@@ -3,6 +3,15 @@ package euler;
 import eulerUtilities.EulerUtilities;
 
 public class EulerProblem004Alternate {
+	/*
+	 * problem details - https://projecteuler.net/problem=4
+	 *
+	 * This approach creates a lot more code, but can handle a much wider range
+	 * of inputs and allows me to test out what happens when you take even
+	 * larger numbers and smash them together, I might have to pull this out
+	 * into a utility if another Project Euler problem wants to know about
+	 * multiples of various sized digit numbers
+	 */
 	private static Double firstMultipleMaxValue;
 	private static Double firstMultipleMinValue;
 	private static Double secondMultipleMaxValue;
@@ -13,13 +22,6 @@ public class EulerProblem004Alternate {
 	private static int remainderTargetLength = 0;
 
 	public static int answer() {
-		/*
-		 * problem details - https://projecteuler.net/problem=4
-		 *
-		 * This approach creates a lot more code, but can handle a much wider
-		 * range of inputs.
-		 */
-
 		return largestPalindromeProduct(3, 3);
 	}
 
@@ -28,9 +30,10 @@ public class EulerProblem004Alternate {
 	 * default for this problem is two three-digit numbers so the method is
 	 * called with (3,3) as the parameters.
 	 * 
-	 * This returns an int, so the max total value for both parameters when they
-	 * are added together is 9. Example parameters (3,4) = 7 total and is
-	 * acceptable.
+	 * This returns an int, so the max acceptable value for both parameters when they
+	 * are added together is 9. Example parameters for a three and four digit
+	 * number : largetsPalindromeProduct(3,4) = 7 total and is acceptable. Will
+	 * return zero if parameters are too large or unexpected errors occur.
 	 * 
 	 * @param firstValueLength
 	 * @param secondValueLength
@@ -47,7 +50,6 @@ public class EulerProblem004Alternate {
 
 		// test potential values as palindromes and then confirm
 		// if they can be reached by multiplying the target value numbers.
-		
 		for (/* no init */ ; productValue > 1; productValue--) {
 			if (EulerUtilities.isPalindrome(productValue)) {
 				for (int currentTestValue = testRangeMax; currentTestValue > testRangeMin; currentTestValue--) {
@@ -67,9 +69,10 @@ public class EulerProblem004Alternate {
 	private static void setupPalindromeCheck(int firstValueLength, int secondValueLength) {
 		/*
 		 * setup section to determine all the important ranges, important that
-		 * we optimize our test ranges and note which range is used so that the
-		 * output value can be confirmed to work with supplied multiple lengths
-		 */ 
+		 * we choose the best test ranges and note which range is used so that
+		 * the output value can be confirmed to work with the other target
+		 * number.
+		 */
 		firstMultipleMaxValue = Math.pow(10, firstValueLength) - 1;
 		firstMultipleMinValue = Math.pow(10, (firstValueLength - 1)) - 1;
 		secondMultipleMaxValue = Math.pow(10, secondValueLength) - 1;

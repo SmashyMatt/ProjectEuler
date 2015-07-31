@@ -39,7 +39,7 @@ public class SieveOfEratosthenes {
 	 * @param integer
 	 * @return
 	 */
-	public static int getNextPrimeAfter(int integer) {
+	public int getNextPrimeAfter(int integer) {
 		return primeSet.nextSetBit(integer + 1);
 	}
 

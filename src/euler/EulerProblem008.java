@@ -7,22 +7,22 @@ import java.util.List;
 import java.util.Scanner;
 
 public class EulerProblem008 {
+	/*
+	 * problem details - https://projecteuler.net/problem=8
+	 * 
+	 * The scope of this problem changed from the time when I originally
+	 * completed it. Now the solution requires you multiply 13 digits rather
+	 * than 5. This adds a bit more of a desire to do the calculations
+	 * programmatically and has a hidden trick as some of your highest sets will
+	 * exceed the maximum value for int and overflow so you actually don't get
+	 * the correct answer if your score tracking variable is an int. This is the
+	 * first problem that requires some form of reading from file, which I
+	 * rarely get to use.
+	 */
 	private static long highestScore = 0;
 	private static List<Integer> highestScoringList = new ArrayList<Integer>();
 
 	public static long answer() {
-		/*
-		 * problem details - https://projecteuler.net/problem=8
-		 * 
-		 * The scope of this problem changed from the time when I originally
-		 * completed it. Now the solution requires you multiply 13 digits rather
-		 * than 5. This adds a bit more of a desire to do the calculations
-		 * programmatically and has a hidden trick. It turns out some of your
-		 * highest sets will exceed the maximum value for int and overflow so
-		 * you actually don't get the correct answer if your score tracking
-		 * variable is an int. This is the first problem that requires some form
-		 * of reading from file, which I rarely use.
-		 */
 		File inputFile = new File("./datafiles/problem08.txt");
 		Scanner fileScanner = null;
 		List<Integer> listOfIntegersFromFile = new ArrayList<Integer>();
