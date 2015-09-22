@@ -6,7 +6,7 @@ public class EulerMain {
 	static long timerStart = 0;
 	static long timerEnd = 0;
 	static long timeSpent = 0;
-	static SieveOfEratosthenes sieve = SieveOfEratosthenes.getSieve();
+	static SieveOfEratosthenes sieve = SieveOfEratosthenes.getSieve(); //testcomment
 
 	public static void main(String[] args) {
 		timerStart = System.currentTimeMillis();
