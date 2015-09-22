@@ -1,6 +1,6 @@
 package euler;
 
-public class EulerProblem001 { //test
+public class EulerProblem001 {
 	/*
 	 * problem details - https://projecteuler.net/problem=1
 	 * 
